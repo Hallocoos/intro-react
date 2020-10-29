@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "./Table";
+import List from "./List";
 /*Add import statement here*/
 
 class App extends React.Component {
@@ -7,6 +8,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      students: [],
       buttonClicked: "",
       assignments: [] /*Below this line, add the students state variable*/,
       grades: {}
@@ -32,6 +34,11 @@ class App extends React.Component {
   }
 
   /*Write an addStudent method here*/
+  addStudent(student) {
+    this.setState({
+      students: this.state.students.push(student)
+    });
+  }
 
   addGrade(assignment, student, score) {
     let grades = this.state.grades;
@@ -46,7 +53,6 @@ class App extends React.Component {
 
   render() {
     let tabChoice = <div />;
-
     /*Uncomment below to render assignments*/
     if (this.state.buttonClicked === "assignments") {
       tabChoice = (
@@ -60,7 +66,6 @@ class App extends React.Component {
     }
 
     /* Change below to render students*/
-
     if (this.state.buttonClicked === "students") {
       tabChoice = (
         <List
